@@ -80,7 +80,7 @@ const [category , setCategory]=useState('Relevance') ;
           data={{
             labels: new Array(40).fill(1).map((data , index) => index),
             datasets: [
-              select.filter((e)=>e.label == category)[0]
+              select.filter((e)=>e.label === category)[0]
             ],
           }}
           options={{
@@ -129,10 +129,10 @@ const [category , setCategory]=useState('Relevance') ;
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              style={{padding:10, fontSize:20 , fontWeight:"500"}}
+              className="select"
             >
               {select.map((option) => (
-                <option key={option} value={option.label} style={{padding:10, fontSize:20 , fontWeight:"500"}}>
+                <option key={option} value={option.label} className="optionText">
                   {option.label}
                   
                 </option>
