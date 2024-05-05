@@ -4,56 +4,78 @@ const app=express()
 const cors=require("cors")
 // const data=require("./data.js")
 
-const dbconnect=async()=>{
-    const uri="mongodb://localhost:27017"
-    try{
-     await mongoose.connect(uri)
-     console.log('db conected')
-    //  console.log(data)
-    }catch(err){
-        console.log(err)
+const dbConnect = async () => {
+    const uri = "mongodb://172.19.128.1:27017/admin";
 
+    try {
+        await mongoose.connect(uri);
+        console.log('Connected to MongoDB');
+    } catch (err) {
+        console.error('Error connecting to MongoDB:', err);
     }
-}
+};
 
-dbconnect()
+// Call the function to establish the connection
+dbConnect();
 
 app.use(cors())
 
-const studentSchema=mongoose.Schema({
+
+const chartSchema=mongoose.Schema({
     title:{
         type:String,
-        require:true
     },
-    author:{
-        type:String,
-        require:true
+    likelihood:{
+        type:Number,
     },
-    description:{
+    source:{
         type:String,
-        require:true
+    },
+    pestle:{
+        type:String, 
+    },
+    relevance:{
+        type:Number,
+    },
+    country:{
+        type:String,
+    },
+    published:{
+        type:String, 
+    },
+    added:{
+        type:String, 
+    },
+    impact:{
+        type:String, 
+    },
+    start_year:{
+        type:String, 
+    },
+    end_year:{
+        type:String, 
+    },
+    region:{
+        type:String, 
     },
     url:{
-        type:String,
-        require:true,
-        unique:true
+        type:String, 
     },
-   
-    link:{
-        type:String,
-        require:true
+    insight:{
+        type:String, 
     },
-    timestamp:{
-        type:String,
-        require:true
+    topic:{
+        type:String, 
     },
-    publisher:{
-        type:String,
-        require:true
+    sector:{
+        type:String, 
+    },
+    intensity:{
+        type:Number, 
     },
 })
 //modal
-const student=mongoose.model("student",studentSchema)
+const chart=mongoose.model("chart",chartSchema)
 
 // send data
 // const creatitem=async(data)=>{
@@ -76,7 +98,7 @@ const student=mongoose.model("student",studentSchema)
 // read item
 const readItem=async()=>{
     try{
-        const res=await student.find();
+        const res=await chart.find();
         console.log(res)
     
     }catch(err){
@@ -89,7 +111,7 @@ const readItem=async()=>{
 const route=express.Router();
 route.get('/news',async(req,res)=>{
     try{
-     const data= await student.find({})
+     const data= await chart.find({})
      console.log(data)
       res.status(200).json(data)
     }catch(err){

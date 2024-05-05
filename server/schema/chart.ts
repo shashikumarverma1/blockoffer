@@ -1,0 +1,57 @@
+const mongoose=require("mongoose")
+
+const chartSchema=mongoose.Schema({
+    title:{
+        type:String,
+    },
+    likelihood:{
+        type:Number,
+    },
+    source:{
+        type:String,
+    },
+    pestle:{
+        type:String, 
+    },
+    relevance:{
+        type:Number,
+    },
+    country:{
+        type:String,
+    },
+    published:{
+        type:String, 
+    },
+    added:{
+        type:String, 
+    },
+    impact:{
+        type:String, 
+    },
+    start_year:{
+        type:String, 
+    },
+    end_year:{
+        type:String, 
+    },
+    region:{
+        type:String, 
+    },
+    url:{
+        type:String, 
+    },
+    insight:{
+        type:String, 
+    },
+    topic:{
+        type:String, 
+    },
+    sector:{
+        type:String, 
+    },
+    intensity:{
+        type:Number, 
+    },
+})
+//modal
+export const chart=mongoose.model("chart",chartSchema)
